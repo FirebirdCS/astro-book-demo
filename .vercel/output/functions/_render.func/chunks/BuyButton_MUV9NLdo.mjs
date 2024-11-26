@@ -8,10 +8,12 @@ const $$Astro = createAstro();
 const $$BuyButton = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$BuyButton;
+  const GUATEMALA = "GT";
   const USA = "US";
-  const country = Astro2.request.headers.get("X-Vercel-IP-Country") ?? "US";
-  const storeCountry = country === USA ? "us" : "guatemala";
-  const countryName = country === USA ? "USA" : "Guatemala";
+  const country = Astro2.request.headers.get("X-Vercel-IP-Country") ?? USA;
+  const isGuatemala = country === GUATEMALA;
+  const storeCountry = isGuatemala ? "guatemala" : "us";
+  const countryName = isGuatemala ? "Guatemala" : "USA";
   const { buy } = Astro2.props;
   const url = buy[storeCountry];
   return renderTemplate`${maybeRenderHead()}<a${addAttribute(url, "href")} title="Buy a book" target="_blank" rel="noopener noreferrer" class="text-balance inline-flex gap-2 items-center bg-yellow-400 hover:bg-yellow-500 active:bg-yellow-600 text-black font-bold py-2 px-4 rounded-lg border border-yellow-500 transition duration-200 ease-in-out hover:scale-105 justify-center text-center">
