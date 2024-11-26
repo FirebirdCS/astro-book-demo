@@ -15,13 +15,13 @@ export const prerender = true;
         const { book, author, quotation } = randomQuote.data;
 
         return (
-          <div class="p-6 bg-gray-800 text-gray-200 rounded-lg shadow-lg w-full">
+          <div class="p-6 bg-gray-700 text-gray-200 rounded-lg shadow-lg w-full">
             <p class="prose prose-invert break-words italic text-lg text-center">
               {quotation}
             </p>
             <div class="mt-4 text-right">
-              <p class="text-sm font-semibold text-gray-400">- {author}</p>
-              <p class="text-xs text-gray-500">in *{book}*</p>
+              <p class="text-sm font-semibold text-gray-300">- {author}</p>
+              <p class="text-xs text-gray-400">in {book}</p>
             </div>
           </div>
         );
