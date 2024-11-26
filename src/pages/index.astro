@@ -1,0 +1,67 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import { getCollection } from "astro:content";
+import QuoteSpan from "../components/QuoteSpan.astro";
+
+const books = await getCollection("books");
+
+export const prerender = true;
+---
+
+<Layout title="Books from Simon Stålenhag">
+  <main class="container mx-auto px-4 sm:px-8">
+    <div
+      class="grid grid-cols-1 lg:grid-cols-2 items-start gap-8 lg:gap-8 mb-12 sm:mb-24"
+    >
+      <h1
+        class="text-center text-4xl sm:text-6xl font-extrabold sm:text-center"
+      >
+        Simon Stålenhag <span class="block">books</span>
+      </h1>
+      <div class="flex">
+        <QuoteSpan />
+      </div>
+    </div>
+    <section
+      class="mt-6"
+      aria-label="Science Fiction books made by Simon Stålenhag"
+    >
+      <div class="px-4 mx-auto max-w-screen-xl">
+        <div class="grid gap-6 md:grid-cols-2">
+          {
+            books.map((book) => {
+              const { slug, data } = book;
+              const { title, author, img, description, buy } = data;
+
+              return (
+                <article class="flex flex-col items-center md:items-start md:flex-row">
+                  <a
+                    href={`/book/${slug}`}
+                    class="mb-4 md:mb-0 transition hover:scale-105"
+                  >
+                    <img
+                      transition:name={`img-${slug}`}
+                      src={`/${img}`}
+                      alt="{title}"
+                      class="max-w-none w-64 h-64 object-contain rounded md:w-60 md:h-60"
+                    />
+                  </a>
+                  <div class="text-center md:text-left md:ml-6">
+                    <h3 class="mb-2 text-2xl font-bold leading-tight text-white">
+                      {title}
+                    </h3>
+                    <p class=" text-gray-300 max-w-xs md:max-w-sm">
+                      {description}
+                    </p>
+                  </div>
+                </article>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+    <Footer />
+  </main>
+</Layout>

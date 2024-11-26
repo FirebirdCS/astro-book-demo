@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+
+const quotes = await getCollection("quotes");
+
+const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
+export const prerender = true;
+---
+
+<span class="block space-y-8">
+  {
+    randomQuote &&
+      (() => {
+        const { book, author, quotation } = randomQuote.data;
+
+        return (
+          <div class="p-6 bg-gray-800 text-gray-200 rounded-lg shadow-lg w-full">
+            <p class="prose prose-invert break-words italic text-lg text-center">
+              {quotation}
+            </p>
+            <div class="mt-4 text-right">
+              <p class="text-sm font-semibold text-gray-400">- {author}</p>
+              <p class="text-xs text-gray-500">in *{book}*</p>
+            </div>
+          </div>
+        );
+      })()
+  }
+</span>
