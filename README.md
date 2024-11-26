@@ -16,3 +16,16 @@ Follow these steps to run this project locally:
    ```bash
    git clone <REPOSITORY_URL>
    cd <PROJECT_NAME>
+
+2. Install dependencies:
+npm install
+# or
+pnpm install
+
+3. Start the development server:
+
+npm run dev
+# or
+pnpm dev
+
+4. Open your browser at http://localhost:4321 to see the website in action.
