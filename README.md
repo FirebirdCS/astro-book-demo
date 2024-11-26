@@ -18,14 +18,15 @@ Follow these steps to run this project locally:
    cd <PROJECT_NAME>
 
 2. Install dependencies:
-npm install
-# or
-pnpm install
+    ```bash
+    npm install
+    or
+    pnpm install
 
 3. Start the development server:
+   ```bash
+    npm run dev
+    or
+    pnpm dev
 
-npm run dev
-# or
-pnpm dev
-
-4. Open your browser at http://localhost:4321 to see the website in action.
+4. Open your browser at localhost:4321 to see the website in action.
